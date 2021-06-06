@@ -21,6 +21,10 @@ class CreateShopsTable extends Migration
             $table->string('overview');
             $table->string('image_url');
             $table->timestamps();
+
+            $table->foreign('area_id')->references('id')->on('areas')->onDelete('cascade');
+            $table->foreign('genre_id')->references('id')->on('genres')->onDelete('cascade');
+            
         });
     }
 

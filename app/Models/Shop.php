@@ -9,23 +9,17 @@ class Shop extends Model
 {
     use HasFactory;
 
-    public function areas()
+    public function area()
     {
         return $this->belongsTo(Area::class, "area_id");
     }
     
-    public function genres()
+    public function genre()
     {
         return $this->belongsTo(Genre::class, "genre_id");
     }
-
-    public function likes()
+    public function like()
     {
-        return $this->hasMany(Likes::class);
-    }
-
-    public function bookings()
-    {
-        return $this->hasMany(Likes::class);
+        return $this->hasMany(Like::class);
     }
 }

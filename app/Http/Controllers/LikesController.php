@@ -10,18 +10,17 @@ class LikesController extends Controller
 {
     public function getUserLikes($user_id)
     {
-        // if ($user_id) {
-            $user_id = 1;
-            $items = Like::where('user_id', $user_id)->first()->user;
+        $items = Like::where('user_id', $user_id)->with('shop')->get();
+        if ($user_id) {
             return response()->json([
                 'message' => 'Like created successfully',
                 'data' => $items
             ], 200);
-        // } else {
-        //     return response()->json([
-        //         'status' => 'not found'
-        //     ], 404);
-        // }
+        } else {
+            return response()->json([
+                'status' => 'not found'
+            ], 404);
+        }
     }
 
     public function putLikes(Request $request, $user_id)

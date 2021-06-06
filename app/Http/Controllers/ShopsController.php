@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class ShopsController extends Controller
 {
     public function getShops() {
-        $items = Shop::all();
+        $items = Shop::with('area', 'genre', 'like')->get();
         return response()->json([
             'message' => 'Shops got successfully',
             'data' => $items
@@ -17,10 +17,8 @@ class ShopsController extends Controller
 
     public function getShop($shop_id)
     {
+        $items = Shop::where('id', $shop_id)->with('area', 'genre', 'like')->get();
         if ($shop_id) {
-            $items = Shop::find($shop_id);
-            // $items->areas->area;
-            // $items->genres->genre;
             return response()->json([
                 'message' => 'Shop got successfylly',
                 'data' => $items,

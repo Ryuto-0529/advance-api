@@ -20,6 +20,9 @@ class CreateBookingsTable extends Migration
             $table->dateTime('date_time');
             $table->integer('user_number');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
         });
     }
 

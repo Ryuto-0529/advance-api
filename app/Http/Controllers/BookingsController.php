@@ -11,7 +11,7 @@ class BookingsController extends Controller
     public function getUserBookings($user_id)
     {
         if ($user_id) {
-            $items = Booking::where('user_id', $user_id)->first();
+            $items = Booking::where('user_id', $user_id)->with('shop')->get();
             return response()->json([
                 'message' => 'User bookings got successfully',
                 'data' => $items
